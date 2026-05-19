@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.grpAdaugaBiciclist = new System.Windows.Forms.GroupBox();
             this.btnAdaugaBiciclist = new System.Windows.Forms.Button();
             this.txtCnp = new System.Windows.Forms.TextBox();
@@ -49,6 +48,7 @@
             this.btnCautaDupaCnp = new System.Windows.Forms.Button();
             this.txtCautareCnp = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnStergeBiciclist = new System.Windows.Forms.Button();
             this.lstBiciclist = new System.Windows.Forms.ListBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.lblStartLung = new System.Windows.Forms.Label();
@@ -100,7 +100,7 @@
             // 
             this.txtCnp.Location = new System.Drawing.Point(15, 136);
             this.txtCnp.Name = "txtCnp";
-            this.txtCnp.Size = new System.Drawing.Size(283, 25);
+            this.txtCnp.Size = new System.Drawing.Size(283, 30);
             this.txtCnp.TabIndex = 3;
             // 
             // label2
@@ -108,7 +108,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(11, 115);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 18);
+            this.label2.Size = new System.Drawing.Size(44, 23);
             this.label2.TabIndex = 2;
             this.label2.Text = "CNP";
             // 
@@ -117,7 +117,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(11, 46);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 18);
+            this.label1.Size = new System.Drawing.Size(61, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "Nume:";
             // 
@@ -125,7 +125,7 @@
             // 
             this.txtNume.Location = new System.Drawing.Point(15, 68);
             this.txtNume.Name = "txtNume";
-            this.txtNume.Size = new System.Drawing.Size(283, 25);
+            this.txtNume.Size = new System.Drawing.Size(283, 30);
             this.txtNume.TabIndex = 0;
             // 
             // groupBox2
@@ -151,21 +151,21 @@
             this.cmbDificultate.FormattingEnabled = true;
             this.cmbDificultate.Location = new System.Drawing.Point(149, 120);
             this.cmbDificultate.Name = "cmbDificultate";
-            this.cmbDificultate.Size = new System.Drawing.Size(121, 26);
+            this.cmbDificultate.Size = new System.Drawing.Size(121, 31);
             this.cmbDificultate.TabIndex = 11;
             // 
             // txtDurata
             // 
             this.txtDurata.Location = new System.Drawing.Point(288, 120);
             this.txtDurata.Name = "txtDurata";
-            this.txtDurata.Size = new System.Drawing.Size(126, 25);
+            this.txtDurata.Size = new System.Drawing.Size(126, 30);
             this.txtDurata.TabIndex = 10;
             // 
             // txtDistanta
             // 
             this.txtDistanta.Location = new System.Drawing.Point(6, 120);
             this.txtDistanta.Name = "txtDistanta";
-            this.txtDistanta.Size = new System.Drawing.Size(126, 25);
+            this.txtDistanta.Size = new System.Drawing.Size(126, 30);
             this.txtDistanta.TabIndex = 9;
             // 
             // button1
@@ -182,7 +182,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(328, 99);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 18);
+            this.label6.Size = new System.Drawing.Size(105, 23);
             this.label6.TabIndex = 8;
             this.label6.Text = "Durata(min):";
             // 
@@ -191,7 +191,7 @@
             this.Dificultate.AutoSize = true;
             this.Dificultate.Location = new System.Drawing.Point(172, 99);
             this.Dificultate.Name = "Dificultate";
-            this.Dificultate.Size = new System.Drawing.Size(75, 18);
+            this.Dificultate.Size = new System.Drawing.Size(91, 23);
             this.Dificultate.TabIndex = 7;
             this.Dificultate.Text = "Dificultate:";
             // 
@@ -200,7 +200,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 99);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 18);
+            this.label4.Size = new System.Drawing.Size(77, 23);
             this.label4.TabIndex = 6;
             this.label4.Text = "Distanta:";
             // 
@@ -208,7 +208,7 @@
             // 
             this.txtDenumire.Location = new System.Drawing.Point(6, 58);
             this.txtDenumire.Name = "txtDenumire";
-            this.txtDenumire.Size = new System.Drawing.Size(424, 25);
+            this.txtDenumire.Size = new System.Drawing.Size(424, 30);
             this.txtDenumire.TabIndex = 5;
             // 
             // label3
@@ -216,7 +216,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 37);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 18);
+            this.label3.Size = new System.Drawing.Size(89, 23);
             this.label3.TabIndex = 5;
             this.label3.Text = "Denumire:";
             // 
@@ -244,26 +244,42 @@
             // 
             this.txtCautareCnp.Location = new System.Drawing.Point(6, 24);
             this.txtCautareCnp.Name = "txtCautareCnp";
-            this.txtCautareCnp.Size = new System.Drawing.Size(144, 25);
+            this.txtCautareCnp.Size = new System.Drawing.Size(144, 30);
             this.txtCautareCnp.TabIndex = 5;
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.btnStergeBiciclist);
             this.groupBox4.Controls.Add(this.lstBiciclist);
             this.groupBox4.Location = new System.Drawing.Point(29, 362);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(333, 173);
+            this.groupBox4.Size = new System.Drawing.Size(333, 220);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Biciclisti";
             // 
+            // btnStergeBiciclist
+            //
+            this.btnStergeBiciclist.BackColor = System.Drawing.Color.FromArgb(211, 47, 47);
+            this.btnStergeBiciclist.Enabled = false;
+            this.btnStergeBiciclist.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStergeBiciclist.FlatAppearance.BorderSize = 0;
+            this.btnStergeBiciclist.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnStergeBiciclist.ForeColor = System.Drawing.Color.White;
+            this.btnStergeBiciclist.Location = new System.Drawing.Point(15, 172);
+            this.btnStergeBiciclist.Name = "btnStergeBiciclist";
+            this.btnStergeBiciclist.Size = new System.Drawing.Size(295, 38);
+            this.btnStergeBiciclist.TabIndex = 1;
+            this.btnStergeBiciclist.Text = "Șterge Biciclist Selectat";
+            this.btnStergeBiciclist.UseVisualStyleBackColor = false;
+            // 
             // lstBiciclist
             // 
             this.lstBiciclist.FormattingEnabled = true;
-            this.lstBiciclist.ItemHeight = 18;
+            this.lstBiciclist.ItemHeight = 23;
             this.lstBiciclist.Location = new System.Drawing.Point(15, 20);
             this.lstBiciclist.Name = "lstBiciclist";
-            this.lstBiciclist.Size = new System.Drawing.Size(295, 130);
+            this.lstBiciclist.Size = new System.Drawing.Size(295, 142);
             this.lstBiciclist.TabIndex = 0;
             // 
             // groupBox5
@@ -283,7 +299,7 @@
             this.lblStartLung.AutoSize = true;
             this.lblStartLung.Location = new System.Drawing.Point(15, 104);
             this.lblStartLung.Name = "lblStartLung";
-            this.lblStartLung.Size = new System.Drawing.Size(70, 18);
+            this.lblStartLung.Size = new System.Drawing.Size(85, 23);
             this.lblStartLung.TabIndex = 2;
             this.lblStartLung.Text = "Lungimea";
             // 
@@ -292,7 +308,7 @@
             this.lblStartDistanta.AutoSize = true;
             this.lblStartDistanta.Location = new System.Drawing.Point(15, 63);
             this.lblStartDistanta.Name = "lblStartDistanta";
-            this.lblStartDistanta.Size = new System.Drawing.Size(59, 18);
+            this.lblStartDistanta.Size = new System.Drawing.Size(73, 23);
             this.lblStartDistanta.TabIndex = 1;
             this.lblStartDistanta.Text = "Distanta";
             // 
@@ -301,7 +317,7 @@
             this.lblStartTrasee.AutoSize = true;
             this.lblStartTrasee.Location = new System.Drawing.Point(15, 25);
             this.lblStartTrasee.Name = "lblStartTrasee";
-            this.lblStartTrasee.Size = new System.Drawing.Size(50, 18);
+            this.lblStartTrasee.Size = new System.Drawing.Size(59, 23);
             this.lblStartTrasee.TabIndex = 0;
             this.lblStartTrasee.Text = "Traseu";
             // 
@@ -352,7 +368,7 @@
             this.lblStartTraseeBiciclisti.AutoSize = true;
             this.lblStartTraseeBiciclisti.Location = new System.Drawing.Point(21, 73);
             this.lblStartTraseeBiciclisti.Name = "lblStartTraseeBiciclisti";
-            this.lblStartTraseeBiciclisti.Size = new System.Drawing.Size(79, 18);
+            this.lblStartTraseeBiciclisti.Size = new System.Drawing.Size(97, 23);
             this.lblStartTraseeBiciclisti.TabIndex = 4;
             this.lblStartTraseeBiciclisti.Text = "Total trasee";
             // 
@@ -361,7 +377,7 @@
             this.lblStartBicclisti.AutoSize = true;
             this.lblStartBicclisti.Location = new System.Drawing.Point(21, 32);
             this.lblStartBicclisti.Name = "lblStartBicclisti";
-            this.lblStartBicclisti.Size = new System.Drawing.Size(94, 18);
+            this.lblStartBicclisti.Size = new System.Drawing.Size(110, 23);
             this.lblStartBicclisti.TabIndex = 3;
             this.lblStartBicclisti.Text = "Total Biciclisti";
             // 
@@ -379,12 +395,12 @@
             // 
             this.pgDetalisTraseu.Location = new System.Drawing.Point(10, 33);
             this.pgDetalisTraseu.Name = "pgDetalisTraseu";
-            this.pgDetalisTraseu.Size = new System.Drawing.Size(212, 192);
+            this.pgDetalisTraseu.Size = new System.Drawing.Size(307, 178);
             this.pgDetalisTraseu.TabIndex = 0;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1229, 637);
@@ -396,10 +412,8 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.grpAdaugaBiciclist);
-            this.Font = new System.Drawing.Font("Palatino Linotype", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.HelpButton = true;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Form1";
             this.grpAdaugaBiciclist.ResumeLayout(false);
@@ -446,6 +460,7 @@
         private System.Windows.Forms.Label Dificultate;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox lstBiciclist;
+        private System.Windows.Forms.Button btnStergeBiciclist;
         private System.Windows.Forms.Label lblStartDistanta;
         private System.Windows.Forms.Label lblStartTrasee;
         private System.Windows.Forms.Label lblStartLung;

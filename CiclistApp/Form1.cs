@@ -22,6 +22,7 @@ namespace CiclistApp
             btnCautaDupaCnp.Click += BtnCautaDupaCnp_Click;
             button1.Click += BtnAdaugaTraseu_Click;
             btnStergeTraseu.Click += BtnStergeTraseu_Click;
+            btnStergeBiciclist.Click += BtnStergeBiciclist_Click;
             lstBiciclist.SelectedIndexChanged += LstBiciclisti_SelectedIndexChanged;
             dvgTrasee.SelectionChanged += DgvTrasee_SelectionChanged;
 
@@ -38,6 +39,11 @@ namespace CiclistApp
             _db.InitDB();
             LoadBiciclisti();
             UpdateStatisticiGenerale();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
             UITheme.Apply(this);
         }
 
@@ -80,6 +86,7 @@ namespace CiclistApp
         private void LstBiciclisti_SelectedIndexChanged(object sender, EventArgs e)
         {
             int id = GetSelectedBiciclistId();
+            btnStergeBiciclist.Enabled = id > 0;
             if (id > 0) LoadTrasee(id);
             else { dvgTrasee.Rows.Clear(); dvgTrasee.Columns.Clear(); }
         }
@@ -102,6 +109,36 @@ namespace CiclistApp
 
         private void BtnAdaugaBiciclist_Click(object sender, EventArgs e)
         {
+            // Easter egg — Anders Hejlsberg
+            if (txtNume.Text.Trim().ToLower() == "dotnet")
+            {
+                string cnpAnders = "1960020112345";
+                _db.AddBiciclist("Anders Hejlsberg", cnpAnders);
+                LoadBiciclisti();
+
+                // selectăm biciclistul tocmai adăugat
+                var anders = _db.GetBiciclistByCnp(cnpAnders);
+                if (anders != null)
+                {
+                    _db.AddTraseu(anders.Id, "The C# Highway", 19.83, "Imposibil", 2002);
+                    for (int i = 0; i < lstBiciclist.Items.Count; i++)
+                        if (((Biciclist)lstBiciclist.Items[i]).Id == anders.Id)
+                        { lstBiciclist.SelectedIndex = i; break; }
+                }
+
+                UpdateStatisticiGenerale();
+                MessageBox.Show(
+                    "🎉 Anders Hejlsberg a fost adăugat!\n\n" +
+                    "\"C# is a simple, modern, object-oriented,\n" +
+                    "and type-safe programming language.\"\n\n" +
+                    "— Anders Hejlsberg, 2002",
+                    "Easter Egg Discovered! 🥚",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                txtNume.Clear();
+                return;
+            }
+
             string nume = txtNume.Text.Trim();
             string cnp = txtCnp.Text.Trim();
 
@@ -125,8 +162,30 @@ namespace CiclistApp
             if (string.IsNullOrEmpty(denumire))
             { Validators.ShowError("Denumirea traseului nu poate fi goală!"); return; }
 
+            // Easter egg — câmp distanță gol sau "0"
+            if (string.IsNullOrWhiteSpace(txtDistanta.Text) || txtDistanta.Text.Trim() == "0")
+            {
+                MessageBox.Show(
+                    "NullReferenceException: cyclist has no legs",
+                    "System.CyclistException",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
             if (!Validators.ValidateDistanta(txtDistanta.Text, out double distanta)) return;
             if (!Validators.ValidateDurata(txtDurata.Text, out int durata)) return;
+
+            // Easter egg — distanța magică 123456
+            if (decimal.TryParse(txtDistanta.Text, out decimal dist) && dist == 123456)
+            {
+                MessageBox.Show(
+                    "🚴 That's a marathon, not a cycling route!",
+                    "Wrong sport, buddy",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
 
             string dificultate = cmbDificultate.SelectedItem?.ToString() ?? "ușor";
             _db.AddTraseu(idBiciclist, denumire, distanta, dificultate, durata);
@@ -137,8 +196,33 @@ namespace CiclistApp
             MessageBox.Show("Traseu adăugat cu succes!");
         }
 
-        private void BtnStergeTraseu_Click(object sender, EventArgs e)
+        private void BtnStergeBiciclist_Click(object sender, EventArgs e)
         {
+            if (!(lstBiciclist.SelectedItem is Biciclist b)) return;
+
+            var raspuns = MessageBox.Show(
+                $"Ești sigur că vrei să îl ștergi pe:\n\n" +
+                $"👤 {b.Nume} — {b.Cnp}\n\n" +
+                $"Această acțiune va șterge și toate traseele sale!",
+                "Confirmare ștergere",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning,
+                MessageBoxDefaultButton.Button2);
+
+            if (raspuns != DialogResult.Yes) return;
+
+            _db.DeleteBiciclist(b.Id);
+            pgDetalisTraseu.SelectedObject = null;
+            dvgTrasee.Rows.Clear();
+            dvgTrasee.Columns.Clear();
+            btnStergeBiciclist.Enabled = false;
+            LoadBiciclisti();
+            UpdateStatisticiGenerale();
+            MessageBox.Show($"Biciclistul {b.Nume} a fost șters.",
+                "Șters cu succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void BtnStergeTraseu_Click(object sender, EventArgs e)        {
             if (dvgTrasee.SelectedRows.Count == 0)
             { Validators.ShowError("Selectați un traseu de șters!"); return; }
 

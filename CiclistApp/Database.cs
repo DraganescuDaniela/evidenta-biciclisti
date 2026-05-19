@@ -141,8 +141,26 @@ namespace CiclistApp
             }
         }
 
-        public void DeleteTraseu(int idTraseu)
+        public void DeleteBiciclist(int idBiciclist)
         {
+            using (var con = new SQLiteConnection(_connectionString))
+            {
+                con.Open();
+                using (var cmd = con.CreateCommand())
+                {
+                    // șterge mai întâi traseele asociate
+                    cmd.CommandText = "DELETE FROM Trasee WHERE id_biciclist = @id";
+                    cmd.Parameters.AddWithValue("@id", idBiciclist);
+                    cmd.ExecuteNonQuery();
+
+                    // apoi biciclistul
+                    cmd.CommandText = "DELETE FROM Biciclisti WHERE id_biciclist = @id";
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteTraseu(int idTraseu)        {
             using (var con = new SQLiteConnection(_connectionString))
             {
                 con.Open();
