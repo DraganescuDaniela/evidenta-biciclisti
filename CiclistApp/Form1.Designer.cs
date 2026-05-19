@@ -263,7 +263,7 @@
             this.lstBiciclist.ItemHeight = 18;
             this.lstBiciclist.Location = new System.Drawing.Point(15, 20);
             this.lstBiciclist.Name = "lstBiciclist";
-            this.lstBiciclist.Size = new System.Drawing.Size(295, 58);
+            this.lstBiciclist.Size = new System.Drawing.Size(295, 130);
             this.lstBiciclist.TabIndex = 0;
             // 
             // groupBox5

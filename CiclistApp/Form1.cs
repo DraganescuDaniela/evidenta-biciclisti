@@ -38,6 +38,7 @@ namespace CiclistApp
             _db.InitDB();
             LoadBiciclisti();
             UpdateStatisticiGenerale();
+            UITheme.Apply(this);
         }
 
         // ══════════════════════════════════════════════════════
